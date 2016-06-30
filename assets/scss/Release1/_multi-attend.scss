@@ -1,0 +1,176 @@
+.other-rings{
+	width: 100%;
+	@include default-font;
+	font-size: 0.8rem;
+	padding: 3px 30px;
+	background-color: $grey-700;
+	position: relative;
+
+	ul{
+		padding: 0;
+		margin: 0;
+		text-align: left;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		white-space: nowrap;
+		line-height: 0;
+	}
+}
+
+	.other-ring{
+		//box-shadow: $ritchie-shadow;
+		position: relative;
+		background-color: white;
+		display: inline-block;
+		width: 360px;
+		margin: 0;
+		cursor: pointer;
+		line-height: 1.4rem;
+		border: 2px solid $grey-700;
+		margin-right: -4px;
+
+		&.s-active{
+			border-color: $brand-color;
+			cursor: default;
+
+			.ring--photo{
+				background-color: $brand-color;
+			}
+		}
+
+		.ring--photo, .ring--data{
+			box-sizing: border-box;
+			position: relative;
+			vertical-align: top;
+			float: left;
+		}
+
+		.ring--photo{
+			width: 23%;
+			background-color: $grey-900;
+			height: 100%;
+			top: 0;
+			bottom: 0;
+			position: absolute;
+		}
+
+			img{
+				width: 100%;
+				max-width: 100%;
+				display: block;
+			}
+
+			.ring--lot{
+				text-align: center;
+				color: white;
+				padding: 1px;
+				line-height: 16px;
+				position: absolute;
+				bottom: 0;
+			    left: 0;
+				right: 0;
+				padding-bottom: 2px;
+			}
+
+		.ring--data{
+			width: 77%;
+			margin-left: 23%;
+		}
+			header{
+				background-color: $grey-100;
+				padding: 3px 5px; 
+				
+				button{
+					position: absolute;
+					right: 5px;
+					top: 5px;
+				}
+			}
+				
+				.ring--label, .ring--lots{
+					display: block;
+					margin-right: 25px;
+					@include ellipsize;
+				}
+
+				.ring--label{
+					font-weight: 700;
+				}
+
+				.ring--lots{
+					color: $grey-700;
+					line-height: 1;
+				}
+
+			.data--body{
+				padding: 3px 5px;
+			}
+
+				.lot--name{
+					margin-bottom: 0;
+					@include ellipsize;
+
+					&:hover{
+						color: black;
+					}
+				}
+
+				.lot--detail{
+					width: 50%;
+					float: left;
+
+					span{
+						line-height: 1;
+					}
+
+					label{
+						margin-right: 5px;
+					}
+				}
+
+	}
+
+
+.overflow-arrow{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 30px;
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+	outline: none;
+	
+	&.arrow--next{
+		right: 0;
+		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+		
+		&:hover{
+			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23E87722'%2F%3E%3C%2Fsvg%3E");
+			
+		}
+	}
+
+	&.arrow--prev{
+		left: 0;
+		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+		
+		&:hover{
+			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23E87722'%2F%3E%3C%2Fsvg%3E");
+			
+		}
+	}
+
+} 
+
+	
+		
+
+	
+
+		
+
+
