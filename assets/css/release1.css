@@ -99,8 +99,8 @@ GRID
 
 @font-face {
   font-family: 'ritchie-icons';
-  src: url("../fonts/ritchie-icons.eot?2gbai8");
-  src: url("../fonts/ritchie-icons.eot?2gbai8#iefix") format("embedded-opentype"), url("../fonts/ritchie-icons.ttf?2gbai8") format("truetype"), url("../fonts/ritchie-icons.woff?2gbai8") format("woff"), url("../fonts/ritchie-icons.svg?2gbai8#ritchie-icons") format("svg");
+  src: url("../fonts/ritchie-icons.eot?u4y10d");
+  src: url("../fonts/ritchie-icons.eot?u4y10d#iefix") format("embedded-opentype"), url("../fonts/ritchie-icons.ttf?u4y10d") format("truetype"), url("../fonts/ritchie-icons.woff?u4y10d") format("woff"), url("../fonts/ritchie-icons.svg?u4y10d#ritchie-icons") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -115,6 +115,25 @@ GRID
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.i-size-med {
+  font-size: 20px;
+  vertical-align: middle; }
+
+.icon-arrow-left:before {
+  content: "\e925"; }
+
+.icon-max-4:before {
+  content: "\e923"; }
+
+.icon-max-1:before {
+  content: "\e922"; }
+
+.icon-max-3:before {
+  content: "\e924"; }
+
+.icon-mail:before, .message-box--mail:before {
+  content: "\e921"; }
 
 .icon-sold:before {
   content: "\e920"; }
@@ -209,7 +228,7 @@ GRID
 .icon-warranty:before {
   content: "\e913"; }
 
-.field--text, .field--text_sm, .field--select {
+.field--text, .field--text_innner-label, .field--text_sm, .field--select {
   width: 100%;
   height: 30px;
   border: 1px solid #bfc0be;
@@ -224,24 +243,35 @@ GRID
   position: relative;
   font-family: 'Trebuchet MS', Verdana, sans-serif;
   font-size: 1rem; }
-  .invalid.field--text, .invalid.field--text_sm, .invalid.field--select, .s-error.field--text, .s-error.field--text_sm, .s-error.field--select {
+  .invalid.field--text, .invalid.field--text_innner-label, .invalid.field--text_sm, .invalid.field--select, .s-error.field--text, .s-error.field--text_innner-label, .s-error.field--text_sm, .s-error.field--select {
     background-color: #F3BFBF; }
-  .s-error_border.field--text, .s-error_border.field--text_sm, .s-error_border.field--select {
+  .s-error_border.field--text, .s-error_border.field--text_innner-label, .s-error_border.field--text_sm, .s-error_border.field--select {
     border-color: #c4483a; }
-  .field--text:hover, .field--text_sm:hover, .field--select:hover {
+  .field--text:hover, .field--text_innner-label:hover, .field--text_sm:hover, .field--select:hover {
     border: 1px solid #E35530; }
-  .field--text:focus, .field--text_sm:focus, .field--select:focus {
+  .field--text:focus, .field--text_innner-label:focus, .field--text_sm:focus, .field--select:focus {
     border: 1px solid #E35530; }
 
-.field--text:-moz-read-only, .field--text_sm:-moz-read-only {
+.field--text:-moz-read-only, .field--text_innner-label:-moz-read-only, .field--text_sm:-moz-read-only {
   border-width: 0 !important;
   text-decoration: underline;
   cursor: pointer; }
 
-.field--text:read-only, .field--text_sm:read-only {
+.field--text:read-only, .field--text_innner-label:read-only, .field--text_sm:read-only {
   border-width: 0 !important;
   text-decoration: underline;
   cursor: pointer; }
+
+.field--text_innner-label {
+  padding-left: 45px; }
+
+.field--inner-label {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  line-height: 30px;
+  color: black; }
 
 .field--text_sm {
   width: 70px; }
@@ -271,10 +301,10 @@ GRID
   background-color: transparent;
   cursor: pointer;
   position: absolute;
-  right: 2px;
+  right: 0;
   top: 2px;
   bottom: 2px;
-  width: 28px;
+  width: 70px;
   line-height: 1; }
   .field--clear:after {
     font-family: 'ritchie-icons' !important;
@@ -345,7 +375,7 @@ input[type=number]::-webkit-outer-spin-button {
 /**********************
 	BUTTONS
 **********************/
-.button, .bidding--bid-button, .button_secondary, .button_select-all, .button_hollow, .button_positive, .button_two-state, .button_negative, .button_two-state.s-negative {
+.button, .bidding--bid-button, .button_secondary, .button_secondary--white, .button_select-all, .button_hollow, .button_positive, .button_two-state, .button_negative, .button_two-state.s-negative {
   position: relative;
   display: inline-block;
   padding: 8px 15px;
@@ -359,11 +389,11 @@ input[type=number]::-webkit-outer-spin-button {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
-  .button:disabled, .bidding--bid-button:disabled, .button_secondary:disabled, .button_select-all:disabled, .button_hollow:disabled, .button_positive:disabled, .button_two-state:disabled, .button_negative:disabled {
+  .button:disabled, .bidding--bid-button:disabled, .button_secondary:disabled, .button_secondary--white:disabled, .button_select-all:disabled, .button_hollow:disabled, .button_positive:disabled, .button_two-state:disabled, .button_negative:disabled {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
-  .button:focus, .bidding--bid-button:focus, .button_secondary:focus, .button_select-all:focus, .button_hollow:focus, .button_positive:focus, .button_two-state:focus, .button_negative:focus {
+  .button:focus, .bidding--bid-button:focus, .button_secondary:focus, .button_secondary--white:focus, .button_select-all:focus, .button_hollow:focus, .button_positive:focus, .button_two-state:focus, .button_negative:focus {
     outline: none;
     border-color: #95490f; }
 
@@ -408,13 +438,22 @@ input[type=number]::-webkit-outer-spin-button {
               transform: translateY(-50%); }
 
 .button_secondary {
-  box-shadow: inset 1px 1px 5px 0 rgba(0, 0, 0, 0.15);
-  background-color: #bfc0be;
+  background-color: transparent;
   background-image: none;
-  border: 0;
-  color: #585858; }
+  border: 2px solid #E87722;
+  color: #E87722; }
   .button_secondary:hover {
-    background-color: #d9d9d8;
+    background-color: white;
+    text-decoration: none; }
+
+.button_secondary--white {
+  background-color: transparent;
+  background-image: none;
+  border: 2px solid white;
+  color: white;
+  opacity: 0.8; }
+  .button_secondary--white:hover {
+    opacity: 1;
     text-decoration: none; }
 
 .button_select-all {
@@ -625,20 +664,21 @@ p {
   font-size: 1rem;
   line-height: 1.6rem; }
 
-a {
+a, .text-link {
   color: inherit;
   text-decoration: none;
   outline: none; }
-  a:hover {
+  a:hover, .text-link:hover {
     text-decoration: underline;
+    outline: none;
+    cursor: pointer; }
+  a:active, a:focus, .text-link:active, .text-link:focus {
     outline: none; }
-  a:active, a:focus {
-    outline: none; }
-  a.a--img {
+  a.a--img, .text-link.a--img {
     line-height: 0;
     display: inline-block;
     max-width: 100%; }
-    a.a--img img {
+    a.a--img img, .text-link.a--img img {
       max-width: 100%; }
 
 hr {
@@ -2335,18 +2375,32 @@ header {
 MOST IMPORTANT - LOT TABLE STYLES
 *************************/
 .client--bottom {
-  position: relative;
-  overflow: hidden; }
+  position: absolute;
+  overflow: hidden;
+  bottom: 30px;
+  top: 451px;
+  width: 100%; }
+  .client--bottom.s-multi-attend {
+    bottom: 128px; }
+  @media (min-height: 800px) {
+    .client--bottom {
+      top: 486px; } }
+  @media (min-height: 1000px) {
+    .client--bottom {
+      top: 506px; } }
 
 .bottom-bg {
   max-width: 1400px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  height: 100%; }
 
 .lot-tables {
   margin-bottom: 100px;
   font-size: 0.9rem;
   line-height: 1.4rem;
-  border-top: 1px solid rgba(149, 149, 149, 0.5); }
+  border-top: 1px solid rgba(149, 149, 149, 0.5);
+  position: relative;
+  height: 100%; }
   @media (min-width: 80em) {
     .lot-tables {
       border: 1px solid rgba(149, 149, 149, 0.5); } }
@@ -2354,8 +2408,11 @@ MOST IMPORTANT - LOT TABLE STYLES
 .lot-tables--header {
   background-color: #E9E9E9;
   padding: 0;
-  position: relative;
-  padding: 10px 0; }
+  padding: 10px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
   .lot-tables--header:after {
     content: '';
     position: absolute;
@@ -2378,6 +2435,12 @@ MOST IMPORTANT - LOT TABLE STYLES
     text-align: right;
     padding-right: 15px;
     text-align: center; }
+
+.lot-scroll {
+  overflow-y: scroll;
+  position: absolute;
+  top: 33px;
+  bottom: 0; }
 
 .lot-table {
   background-color: white;
@@ -2411,6 +2474,12 @@ MOST IMPORTANT - LOT TABLE STYLES
 
 .col-2d, .col-5, .col-5b {
   text-align: center; }
+
+.s-viewer-mode .col-5 {
+  width: 0;
+  display: none; }
+.s-viewer-mode .col-5b {
+  width: 20%; }
 
 .lot {
   display: table-row;
@@ -2468,7 +2537,7 @@ MOST IMPORTANT - LOT TABLE STYLES
     opacity: 0.7; }
     .lot.s-sold .col-5 {
       pointer-events: none; }
-    .lot.s-sold .icon-plus, .lot.s-sold button, .lot.s-sold .lot--add-bid:before {
+    .lot.s-sold i, .lot.s-sold button, .lot.s-sold .lot--add-bid:before {
       display: none; }
     .lot.s-sold.s-youwon {
       background-color: rgba(36, 83, 43, 0.2); }
@@ -2479,20 +2548,20 @@ MOST IMPORTANT - LOT TABLE STYLES
     .lot.s-outofauction [class^="col"] {
       text-decoration: line-through;
       opacity: 0.5; }
-    .lot.s-outofauction .icon-plus, .lot.s-outofauction button, .lot.s-outofauction .lot--add-bid:before {
+    .lot.s-outofauction i, .lot.s-outofauction button, .lot.s-outofauction .lot--add-bid:before {
       display: none; }
     .lot.s-outofauction .col-5b {
       vertical-align: middle; }
     .lot.s-outofauction .lot--sold-label {
       color: #c4483a; }
-  .lot.s-currentLot {
+  .lot.s-currentLot, .lot.s-currentlot {
     background-color: rgba(32, 87, 158, 0.1); }
-    .lot.s-currentLot .col-0 {
+    .lot.s-currentLot .col-0, .lot.s-currentlot .col-0 {
       color: white;
       font-weight: 700;
       position: relative;
       background-color: #20579E; }
-    .lot.s-currentLot:not(.s-grouped) .col-0:before {
+    .lot.s-currentLot:not(.s-grouped) .col-0:before, .lot.s-currentlot:not(.s-grouped) .col-0:before {
       content: '';
       display: block;
       position: absolute;
@@ -2501,7 +2570,7 @@ MOST IMPORTANT - LOT TABLE STYLES
       right: 0;
       width: 10px;
       background-color: white; }
-    .lot.s-currentLot:not(.s-grouped) .col-0:after {
+    .lot.s-currentLot:not(.s-grouped) .col-0:after, .lot.s-currentlot:not(.s-grouped) .col-0:after {
       content: '';
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%220%200%2010%2020%22%20preserveAspectRatio%3D%22none%22%3E%3Cpolygon%20fill%3D%22%2320579E%22%20points%3D%220%2C0%2010%2C10%200%2C20%22%2F%3E%3C%2Fsvg%3E");
       background-size: 10px 100%;
@@ -2514,15 +2583,15 @@ MOST IMPORTANT - LOT TABLE STYLES
       right: 0;
       width: 10px;
       border-bottom: 1px dotted #bdbdbd; }
-    .lot.s-currentLot .col-5 {
+    .lot.s-currentLot .col-5, .lot.s-currentlot .col-5 {
       pointer-events: none; }
-      .lot.s-currentLot .col-5 .bid {
+      .lot.s-currentLot .col-5 .bid, .lot.s-currentlot .col-5 .bid {
         text-decoration: none; }
-    .lot.s-currentLot .col-5b {
+    .lot.s-currentLot .col-5b, .lot.s-currentlot .col-5b {
       vertical-align: middle; }
-    .lot.s-currentLot:not(.s-sold) .lot--sold-label {
+    .lot.s-currentLot:not(.s-sold) .lot--sold-label, .lot.s-currentlot:not(.s-sold) .lot--sold-label {
       color: #20579E; }
-    .lot.s-currentLot .icon-plus, .lot.s-currentLot button, .lot.s-currentLot .lot--add-bid:before {
+    .lot.s-currentLot i, .lot.s-currentLot button, .lot.s-currentLot .lot--add-bid:before, .lot.s-currentlot i, .lot.s-currentlot button, .lot.s-currentlot .lot--add-bid:before {
       display: none; }
   .lot.s-selected [class^="col"] {
     background-color: rgba(232, 119, 34, 0.3); }
@@ -2600,6 +2669,8 @@ MOST IMPORTANT - LOT TABLE STYLES
     text-decoration: none; }
   .lot--add-bid:hover {
     color: #20579E; }
+  .s-viewer-mode .lot--add-bid {
+    display: none !important; }
 
 .lot--watching {
   opacity: 0.25;
@@ -2852,7 +2923,12 @@ MOST IMPORTANT - LOT TABLE STYLES
     padding-top: 0; }
   .bid-field label {
     float: left;
-    margin-top: 5px; }
+    max-width: 80px;
+    vertical-align: middle;
+    text-align: left; }
+    @media (min-width: 80em) {
+      .bid-field label {
+        max-width: 200px; } }
   .bid-field .bid-value_sub {
     display: block;
     font-size: 0.8rem;
@@ -2966,6 +3042,12 @@ MOST IMPORTANT - LOT TABLE STYLES
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 24px; }
+
+.message-box--mail {
+  background-color: transparent;
+  border: 1px solid #959595;
+  color: #333333;
+  font-size: 0.8rem; }
 
 .message-box--error {
   border: none;
@@ -3172,7 +3254,7 @@ MOST IMPORTANT - LOT TABLE STYLES
     pointer-events: none; }
     .bidding--group.s-active-lot li:not(.s-active-lot):not(.s-sold):not(.s-out) .lot--selector {
       pointer-events: none;
-      opacity: 0; }
+      opacity: 0.5; }
   .bidding--group.s-runnerup:not(.s-active-lot) ul:before, .bidding--group.s-runnerup:not(.s-active-lot) .bidding--header:before {
     -webkit-animation-name: runnerup;
             animation-name: runnerup;
@@ -3204,6 +3286,8 @@ MOST IMPORTANT - LOT TABLE STYLES
     width: 10px;
     background-color: #E87722;
     display: inline-block; }
+  .s-viewer-mode .bidding--header:before {
+    background-color: #959595; }
 
 .button_select-all {
   margin-bottom: 5px; }
@@ -3231,6 +3315,8 @@ MOST IMPORTANT - LOT TABLE STYLES
     top: 0;
     bottom: -1px;
     left: 0; }
+  .s-viewer-mode .group--body ul:before {
+    background-color: #959595; }
 
 .group--footer {
   position: absolute;
@@ -3290,6 +3376,10 @@ MOST IMPORTANT - LOT TABLE STYLES
   cursor: pointer;
   -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
   transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1); }
+  .s-viewer-mode .group--lot {
+    padding-left: 10px; }
+    .s-viewer-mode .group--lot.s-sold, .s-viewer-mode .group--lot.s-out {
+      padding-left: 45px; }
   .group--lot .lot--watching {
     vertical-align: middle;
     margin-right: 5px; }
@@ -3324,6 +3414,8 @@ MOST IMPORTANT - LOT TABLE STYLES
     top: 50%;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%); }
+    .s-viewer-mode .group--lot .lot--selector {
+      display: none; }
   .group--lot.s-disabled .lot--selector {
     display: none; }
   .group--lot.s-active-lot {
@@ -3924,6 +4016,8 @@ MOST IMPORTANT - LOT TABLE STYLES
     overflow-x: hidden;
     white-space: nowrap;
     line-height: 0; }
+  .other-rings.s-hidden {
+    display: none; }
 
 .other-ring {
   position: relative;
@@ -4027,141 +4121,93 @@ MOST IMPORTANT - LOT TABLE STYLES
     .overflow-arrow.arrow--prev:hover {
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23E87722'%2F%3E%3C%2Fsvg%3E"); }
 
-/* This is the default Tooltipster theme (feel free to modify or duplicate and create multiple themes!): */
-.tooltipster-default {
-  border-radius: 5px;
-  border: 2px solid #000;
-  background: #4c4c4c;
-  color: #fff; }
-
-/* Use this next selector to style things like font-size and line-height: */
-.tooltipster-default .tooltipster-content {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 16px;
-  padding: 8px 10px;
-  overflow: hidden; }
-
-/* This next selector defines the color of the border on the outside of the arrow. This will automatically match the color and size of the border set on the main tooltip styles. Set display: none; if you would like a border around the tooltip but no border around the arrow */
-.tooltipster-default .tooltipster-arrow .tooltipster-arrow-border {
-  /* border-color: ... !important; */ }
-
-/* If you're using the icon option, use this next selector to style them */
-.tooltipster-icon {
-  cursor: help;
-  margin-left: 4px; }
-
-/* This is the base styling required to make all Tooltipsters work */
-.tooltipster-base {
-  padding: 0;
-  font-size: 0;
-  line-height: 0;
+.tutorial {
   position: absolute;
-  left: 0;
   top: 0;
-  z-index: 9999999;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  background-color: white;
+  z-index: 50;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  opacity: 0;
   pointer-events: none;
-  width: auto;
-  overflow: visible; }
+  -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+  transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1); }
+  .tutorial.s-active {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+    pointer-events: initial; }
 
-.tooltipster-base .tooltipster-content {
-  overflow: hidden; }
+.tutorial--body {
+  padding: 30px;
+  overflow-y: auto; }
 
-/* These next classes handle the styles for the little arrow attached to the tooltip. By default, the arrow will inherit the same colors and border as what is set on the main tooltip itself. */
-.tooltipster-arrow {
-  display: block;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1; }
+.custom--media {
+  position: relative;
+  padding-bottom: 56.25%; }
+  .custom--media iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; }
 
-.tooltipster-arrow span, .tooltipster-arrow-border {
-  display: block;
-  width: 0;
-  height: 0;
+/* This is the core CSS of Tooltipster */
+/* GENERAL STRUCTURE RULES (do not edit this section) */
+.tooltipster-base {
+  /* this ensures that a constrained height set by functionPosition,
+  if greater that the natural height of the tooltip, will be enforced
+  in browsers that support display:flex */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  pointer-events: none;
+  /* this may be overriden in JS for fixed position origins */
   position: absolute; }
 
-.tooltipster-arrow-top span, .tooltipster-arrow-top-right span, .tooltipster-arrow-top-left span {
-  border-left: 8px solid transparent !important;
-  border-right: 8px solid transparent !important;
-  border-top: 8px solid;
-  bottom: -7px; }
+.tooltipster-box {
+  /* see .tooltipster-base. flex-shrink 1 is only necessary for IE10-
+  and flex-basis auto for IE11- (at least) */
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto; }
 
-.tooltipster-arrow-top .tooltipster-arrow-border, .tooltipster-arrow-top-right .tooltipster-arrow-border, .tooltipster-arrow-top-left .tooltipster-arrow-border {
-  border-left: 9px solid transparent !important;
-  border-right: 9px solid transparent !important;
-  border-top: 9px solid;
-  bottom: -7px; }
+.tooltipster-content {
+  /* prevents an overflow if the user adds padding to the div */
+  box-sizing: border-box;
+  /* these make sure we'll be able to detect any overflow */
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto; }
 
-.tooltipster-arrow-bottom span, .tooltipster-arrow-bottom-right span, .tooltipster-arrow-bottom-left span {
-  border-left: 8px solid transparent !important;
-  border-right: 8px solid transparent !important;
-  border-bottom: 8px solid;
-  top: -7px; }
-
-.tooltipster-arrow-bottom .tooltipster-arrow-border, .tooltipster-arrow-bottom-right .tooltipster-arrow-border, .tooltipster-arrow-bottom-left .tooltipster-arrow-border {
-  border-left: 9px solid transparent !important;
-  border-right: 9px solid transparent !important;
-  border-bottom: 9px solid;
-  top: -7px; }
-
-.tooltipster-arrow-top span, .tooltipster-arrow-top .tooltipster-arrow-border, .tooltipster-arrow-bottom span, .tooltipster-arrow-bottom .tooltipster-arrow-border {
+.tooltipster-ruler {
+  /* these let us test the size of the tooltip without overflowing the window */
+  bottom: 0;
   left: 0;
+  overflow: hidden;
+  position: fixed;
   right: 0;
-  margin: 0 auto; }
+  top: 0;
+  visibility: hidden; }
 
-.tooltipster-arrow-top-left span, .tooltipster-arrow-bottom-left span {
-  left: 6px; }
-
-.tooltipster-arrow-top-left .tooltipster-arrow-border, .tooltipster-arrow-bottom-left .tooltipster-arrow-border {
-  left: 5px; }
-
-.tooltipster-arrow-top-right span, .tooltipster-arrow-bottom-right span {
-  right: 6px; }
-
-.tooltipster-arrow-top-right .tooltipster-arrow-border, .tooltipster-arrow-bottom-right .tooltipster-arrow-border {
-  right: 5px; }
-
-.tooltipster-arrow-left span, .tooltipster-arrow-left .tooltipster-arrow-border {
-  border-top: 8px solid transparent !important;
-  border-bottom: 8px solid transparent !important;
-  border-left: 8px solid;
-  top: 50%;
-  margin-top: -7px;
-  right: -7px; }
-
-.tooltipster-arrow-left .tooltipster-arrow-border {
-  border-top: 9px solid transparent !important;
-  border-bottom: 9px solid transparent !important;
-  border-left: 9px solid;
-  margin-top: -8px; }
-
-.tooltipster-arrow-right span, .tooltipster-arrow-right .tooltipster-arrow-border {
-  border-top: 8px solid transparent !important;
-  border-bottom: 8px solid transparent !important;
-  border-right: 8px solid;
-  top: 50%;
-  margin-top: -7px;
-  left: -7px; }
-
-.tooltipster-arrow-right .tooltipster-arrow-border {
-  border-top: 9px solid transparent !important;
-  border-bottom: 9px solid transparent !important;
-  border-right: 9px solid;
-  margin-top: -8px; }
-
-/* Some CSS magic for the awesome animations - feel free to make your own custom animations and reference it in your Tooltipster settings! */
+/* ANIMATIONS */
+/* Open/close animations */
+/* fade */
 .tooltipster-fade {
   opacity: 0;
   -webkit-transition-property: opacity;
   transition-property: opacity; }
 
-.tooltipster-fade-show {
+.tooltipster-fade.tooltipster-show {
   opacity: 1; }
 
+/* grow */
 .tooltipster-grow {
   -webkit-transform: scale(0, 0);
   transform: scale(0, 0);
@@ -4171,13 +4217,14 @@ MOST IMPORTANT - LOT TABLE STYLES
   transition-property: transform, -webkit-transform;
   -webkit-backface-visibility: hidden; }
 
-.tooltipster-grow-show {
+.tooltipster-grow.tooltipster-show {
   -webkit-transform: scale(1, 1);
   transform: scale(1, 1);
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15); }
 
+/* swing */
 .tooltipster-swing {
   opacity: 0;
   -webkit-transform: rotateZ(4deg);
@@ -4188,7 +4235,7 @@ MOST IMPORTANT - LOT TABLE STYLES
   transition-property: transform;
   transition-property: transform, -webkit-transform; }
 
-.tooltipster-swing-show {
+.tooltipster-swing.tooltipster-show {
   opacity: 1;
   -webkit-transform: rotateZ(0deg);
   transform: rotateZ(0deg);
@@ -4196,39 +4243,227 @@ MOST IMPORTANT - LOT TABLE STYLES
   -webkit-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
   transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4); }
 
+/* fall */
 .tooltipster-fall {
-  top: 0;
   -webkit-transition-property: top;
   transition-property: top;
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15); }
 
+.tooltipster-fall.tooltipster-initial {
+  top: 0 !important; }
+
 .tooltipster-fall.tooltipster-dying {
   -webkit-transition-property: all;
   transition-property: all;
-  top: 0px !important;
+  top: 0 !important;
   opacity: 0; }
 
+/* slide */
 .tooltipster-slide {
-  left: -40px;
   -webkit-transition-property: left;
   transition-property: left;
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15); }
 
+.tooltipster-slide.tooltipster-initial {
+  left: -40px !important; }
+
 .tooltipster-slide.tooltipster-dying {
   -webkit-transition-property: all;
   transition-property: all;
-  left: 0px !important;
+  left: 0 !important;
   opacity: 0; }
 
-/* CSS transition for when contenting is changing in a tooltip that is still open. The only properties that will NOT transition are: width, height, top, and left */
-.tooltipster-content-changing {
-  opacity: 0.5;
-  -webkit-transform: scale(1.1, 1.1);
-  transform: scale(1.1, 1.1); }
+/* Update animations */
+/* We use animations rather than transitions here because
+ transition durations may be specified in the style tag due to
+ animationDuration, and we try to avoid collisions and the use
+ of !important */
+/* fade */
+@-webkit-keyframes tooltipster-fading {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes tooltipster-fading {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.tooltipster-update-fade {
+  -webkit-animation: tooltipster-fading 400ms;
+          animation: tooltipster-fading 400ms; }
+
+/* rotate */
+@-webkit-keyframes tooltipster-rotating {
+  25% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg); }
+  75% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg); }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); } }
+@keyframes tooltipster-rotating {
+  25% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg); }
+  75% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg); }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); } }
+.tooltipster-update-rotate {
+  -webkit-animation: tooltipster-rotating 600ms;
+          animation: tooltipster-rotating 600ms; }
+
+/* scale */
+@-webkit-keyframes tooltipster-scaling {
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+@keyframes tooltipster-scaling {
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+.tooltipster-update-scale {
+  -webkit-animation: tooltipster-scaling 600ms;
+          animation: tooltipster-scaling 600ms; }
+
+/**
+ * DEFAULT STYLE OF THE SIDETIP PLUGIN
+ * 
+ * All styles are "namespaced" with .tooltipster-sidetip to prevent
+ * conflicts between plugins.
+ */
+/* .tooltipster-box */
+.tooltipster-sidetip .tooltipster-box {
+  background: #565656;
+  border: 2px solid black;
+  border-radius: 4px; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-box {
+  margin-top: 8px; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-box {
+  margin-right: 8px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-box {
+  margin-left: 8px; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-box {
+  margin-bottom: 8px; }
+
+/* .tooltipster-content */
+.tooltipster-sidetip .tooltipster-content {
+  color: white;
+  line-height: 18px;
+  padding: 6px 14px; }
+
+/* .tooltipster-arrow : will keep only the zone of .tooltipster-arrow-uncropped that
+corresponds to the arrow we want to display */
+.tooltipster-sidetip .tooltipster-arrow {
+  overflow: hidden;
+  position: absolute; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow {
+  height: 10px;
+  /* half the width, for centering */
+  margin-left: -10px;
+  top: 0;
+  width: 20px; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow {
+  height: 20px;
+  margin-top: -10px;
+  right: 0;
+  /* top 0 to keep the arrow from overflowing .tooltipster-base when it has not
+  been positioned yet */
+  top: 0;
+  width: 10px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow {
+  height: 20px;
+  margin-top: -10px;
+  left: 0;
+  /* same as .tooltipster-left .tooltipster-arrow */
+  top: 0;
+  width: 10px; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+  bottom: 0;
+  height: 10px;
+  margin-left: -10px;
+  width: 20px; }
+
+/* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
+.tooltipster-sidetip .tooltipster-arrow-background, .tooltipster-sidetip .tooltipster-arrow-border {
+  height: 0;
+  position: absolute;
+  width: 0; }
+
+/* .tooltipster-arrow-background */
+.tooltipster-sidetip .tooltipster-arrow-background {
+  border: 10px solid transparent; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background {
+  border-bottom-color: #565656;
+  left: 0px;
+  top: 3px; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background {
+  border-left-color: #565656;
+  left: -3px;
+  top: 0px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
+  border-right-color: #565656;
+  left: 3px;
+  top: 0px; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+  border-top-color: #565656;
+  left: 0px;
+  top: -3px; }
+
+/* .tooltipster-arrow-border */
+.tooltipster-sidetip .tooltipster-arrow-border {
+  border: 10px solid transparent;
+  left: 0;
+  top: 0; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-border {
+  border-bottom-color: black; }
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border {
+  border-left-color: black; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-border {
+  border-right-color: black; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border {
+  border-top-color: black; }
+
+/* tooltipster-arrow-uncropped */
+.tooltipster-sidetip .tooltipster-arrow-uncropped {
+  position: relative; }
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-uncropped {
+  top: -10px; }
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-uncropped {
+  left: -10px; }
 
 .tooltips--content-placeholder {
   display: none; }
@@ -4253,26 +4488,67 @@ MOST IMPORTANT - LOT TABLE STYLES
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
 
-.ritchie-tooltips, .ritchie-tooltips-footed, .ritchie-tooltips_full, .ritchie-tooltips_small {
-  border-radius: 0;
+.tooltipster-sidetip.ritchie-tooltips_small .tooltipster-box, .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-box {
+  background: white;
   border: 1px solid #000000;
+  border-radius: 0;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
-  background: #ffffff;
-  color: #000000;
   max-width: 400px; }
-
-/* Use this next selector to style things like font-size and line-height: */
-.ritchie-tooltips .tooltipster-content, .ritchie-tooltips_full .tooltipster-content, .ritchie-tooltips_small .tooltipster-content {
+.tooltipster-sidetip.ritchie-tooltips_small .tooltipster-content, .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-content {
   font-size: 1rem;
   padding: 7.5px 15px;
   overflow: visible;
-  min-width: 350px; }
-  .ritchie-tooltips .tooltipster-content p, .ritchie-tooltips_full .tooltipster-content p, .ritchie-tooltips_small .tooltipster-content p {
+  color: black; }
+  .tooltipster-sidetip.ritchie-tooltips_small .tooltipster-content p, .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-content p {
     margin: 0; }
-  .ritchie-tooltips .tooltipster-content p + p, .ritchie-tooltips_full .tooltipster-content p + p, .ritchie-tooltips_small .tooltipster-content p + p {
+  .tooltipster-sidetip.ritchie-tooltips_small .tooltipster-content p + p, .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-content p + p {
     margin-top: 15px; }
-  .ritchie-tooltips .tooltipster-content a, .ritchie-tooltips_full .tooltipster-content a, .ritchie-tooltips_small .tooltipster-content a {
-    color: #1478BC; }
+.tooltipster-sidetip.ritchie-tooltips_small a, .tooltipster-sidetip.ritchie-tooltips_full a {
+  color: #1478BC; }
+
+.tooltipster-sidetip.ritchie-tooltips_error .tooltipster-box {
+  background-color: #c4483a;
+  border: none;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
+  max-width: 400px; }
+.tooltipster-sidetip.ritchie-tooltips_error .tooltipster-content {
+  padding: 0; }
+  .tooltipster-sidetip.ritchie-tooltips_error .tooltipster-content p {
+    margin: 0; }
+  .tooltipster-sidetip.ritchie-tooltips_error .tooltipster-content p + p {
+    margin-top: 15px; }
+.tooltipster-sidetip.ritchie-tooltips_error .tooltipster-arrow:before {
+  background-color: #c4483a;
+  border-color: transparent; }
+
+.tooltipster-bottom .tooltipster-arrow {
+  top: -1px !important; }
+.tooltipster-right .tooltipster-arrow {
+  left: -1px !important; }
+.tooltipster-left .tooltipster-arrow {
+  right: -1px !important; }
+  .tooltipster-left .tooltipster-arrow:before {
+    left: auto;
+    right: 5px; }
+.tooltipster-top .tooltipster-arrow {
+  bottom: -1px !important; }
+  .tooltipster-top .tooltipster-arrow:before {
+    top: auto;
+    bottom: 5px; }
+.tooltipster-arrow:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border: 1px solid black;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg); }
+.tooltipster-arrow .tooltipster-arrow-border, .tooltipster-arrow .tooltipster-arrow-background {
+  display: none; }
 
 .tooltip--close {
   position: absolute;
@@ -4293,24 +4569,38 @@ MOST IMPORTANT - LOT TABLE STYLES
   min-width: auto;
   text-align: center; }
 
-.ritchie-tooltips_full {
-  border: none;
-  max-width: 350px; }
-  .ritchie-tooltips_full .tooltip--close {
+.tooltipster-sidetip.ritchie-tooltips_full {
+  width: 350px !important;
+  height: auto !important; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-arrow:before {
+    border-color: transparent; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-box {
+    border: 0;
+    position: relative; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--close {
     top: 0;
     right: 0; }
-  .ritchie-tooltips_full .tooltipster-content {
-    padding: 0; }
-  .ritchie-tooltips_full .tooltip--body {
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltipster-content {
+    padding: 0;
+    overflow: hidden; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--body {
     font-size: 0.9rem;
     line-height: 1.4rem;
     padding: 5px; }
-  .ritchie-tooltips_full .tooltip--footer {
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--input {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+    padding: 0 10px 10px; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--footer {
     padding: 5px; }
-  .ritchie-tooltips_full .tooltip--photo {
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--photo {
     max-width: 100%;
     display: block; }
-  .ritchie-tooltips_full .tooltip--lot-details {
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--info {
+    margin-bottom: 10px;
+    display: inline-block;
+    text-decoration: underline; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--lot-details {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -4323,30 +4613,59 @@ MOST IMPORTANT - LOT TABLE STYLES
         -ms-flex: 4;
             flex: 4;
     padding: 0 10px; }
-  .ritchie-tooltips_full .tooltip--error, .ritchie-tooltips_full .tooltip--warning {
-    background-color: #c4483a;
-    color: white;
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success {
     padding: 15px;
     line-height: 1; }
-    .ritchie-tooltips_full .tooltip--error h3, .ritchie-tooltips_full .tooltip--error h4, .ritchie-tooltips_full .tooltip--error h5, .ritchie-tooltips_full .tooltip--error label, .ritchie-tooltips_full .tooltip--warning h3, .ritchie-tooltips_full .tooltip--warning h4, .ritchie-tooltips_full .tooltip--warning h5, .ritchie-tooltips_full .tooltip--warning label {
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error label, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning label, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success label {
       color: white; }
-    .ritchie-tooltips_full .tooltip--error .error--values, .ritchie-tooltips_full .tooltip--warning .error--values {
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning {
+    background-color: #c4483a;
+    color: white; }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--values, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values {
       background-color: white;
       color: #c4483a;
       padding: 5px 0; }
-      .ritchie-tooltips_full .tooltip--error .error--values h3, .ritchie-tooltips_full .tooltip--error .error--values h4, .ritchie-tooltips_full .tooltip--error .error--values h5, .ritchie-tooltips_full .tooltip--error .error--values label, .ritchie-tooltips_full .tooltip--warning .error--values h3, .ritchie-tooltips_full .tooltip--warning .error--values h4, .ritchie-tooltips_full .tooltip--warning .error--values h5, .ritchie-tooltips_full .tooltip--warning .error--values label {
+      .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--values h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--values h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--values h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--values label, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values label {
         color: #c4483a; }
-      .ritchie-tooltips_full .tooltip--error .error--values > *, .ritchie-tooltips_full .tooltip--warning .error--values > * {
+      .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--values > *, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values > * {
         vertical-align: middle; }
-    .ritchie-tooltips_full .tooltip--error .error--greater-than, .ritchie-tooltips_full .tooltip--warning .error--greater-than {
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--error .error--greater-than, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--greater-than {
       font-size: 40px;
       padding: 0 10px; }
-  .ritchie-tooltips_full .tooltip--warning {
-    background-color: #FFE101;
-    color: black;
-    text-align: center; }
-    .ritchie-tooltips_full .tooltip--warning h3, .ritchie-tooltips_full .tooltip--warning h4, .ritchie-tooltips_full .tooltip--warning h5, .ritchie-tooltips_full .tooltip--warning label {
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning {
+    background-color: #FCD748;
+    color: black; }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning label {
       color: black; }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values {
+      color: black; }
+      .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values h3, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values h4, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values h5, .tooltipster-sidetip.ritchie-tooltips_full .tooltip--warning .error--values label {
+        color: black; }
+  .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success {
+    overflow: hidden;
+    padding: 0;
+    max-height: 0;
+    opacity: 0;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1); }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success .tooltip--body {
+      background: #E9E9E9;
+      color: black;
+      padding: 10px 15px 0;
+      overflow: hidden; }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success.s-visible {
+      max-height: 400px;
+      opacity: 1; }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success .max-bid--success {
+      position: relative;
+      padding-left: 60px;
+      text-align: left;
+      margin-bottom: 15px; }
+    .tooltipster-sidetip.ritchie-tooltips_full .tooltip--success .tooltip--check-success {
+      width: 50px;
+      position: absolute;
+      left: 0;
+      top: 0; }
 
 .ritchie-tooltips-footed {
   max-width: 800px; }
@@ -4403,6 +4722,9 @@ MOST IMPORTANT - LOT TABLE STYLES
 .h-ta-center {
   text-align: center; }
 
+.h-ta-left {
+  text-align: left; }
+
 .h-ta-right {
   text-align: right; }
 
@@ -4429,6 +4751,12 @@ MOST IMPORTANT - LOT TABLE STYLES
 
 .h-mr-50 {
   margin-right: 7.5px; }
+
+.h-ml-100 {
+  margin-left: 15px; }
+
+.h-ml-50 {
+  margin-left: 7.5px; }
 
 .h-pt-100 {
   padding-top: 15px; }
@@ -4495,6 +4823,14 @@ MOST IMPORTANT - LOT TABLE STYLES
 .h-icon--large {
   font-size: 25px; }
 
+.s-viewer-mode .h-viewer-hidden {
+  display: none; }
+
+.h-viewer-shown {
+  display: none; }
+  .s-viewer-mode .h-viewer-shown {
+    display: initial; }
+
 /*******************
 	COLOUR OVERRIDES
 ********************/
@@ -4523,7 +4859,7 @@ MOST IMPORTANT - LOT TABLE STYLES
   color: #585858; }
 
 .c-white {
-  color: #ffffff; }
+  color: #ffffff !important; }
 
 .c-black {
   color: #000000; }

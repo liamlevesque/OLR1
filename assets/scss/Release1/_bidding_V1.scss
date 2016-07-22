@@ -193,7 +193,13 @@
 
 			label{
 				float: left;
-				margin-top: 5px;
+				max-width: 80px;
+				vertical-align: middle;
+				text-align: left;
+
+				@include breakpoint(large){
+					max-width: 200px;
+				}
 			}
 
 			.bid-value_sub{
@@ -368,6 +374,15 @@
 					@include icon-font;
 					font-size: 24px;
 				}
+			}
+
+			.message-box--mail{
+				background-color: transparent;
+				border: 1px solid $grey-500;
+				color: $grey-900;
+				@extend .icon-mail;
+
+				font-size: 0.8rem;
 			}
 
 			.message-box--error{
@@ -583,7 +598,7 @@
 
 				.lot--selector{
 					pointer-events: none;
-					opacity: 0;
+					opacity: 0.5;
 				}
 			}
 
@@ -639,6 +654,12 @@
 			background-color: $brand-color;
 			display: inline-block;
 		}
+
+		.s-viewer-mode &{
+			&:before{
+				background-color: $grey-500;
+			}
+		}
 	}
 
 		.button_select-all{
@@ -672,6 +693,12 @@
 			top: 0;
 			bottom: -1px;
 			left: 0;
+		}
+
+		.s-viewer-mode &{
+			ul:before{
+				background-color: $grey-500;
+			}
 		}
 	}
 
@@ -753,6 +780,14 @@
 
 		transition: $transition;
 
+		.s-viewer-mode &{
+			padding-left: 10px;
+
+			&.s-sold, &.s-out{
+				padding-left: 45px;
+			}
+		}
+
 			// &:before{
 			// 	content: '';
 			// 	position: absolute;
@@ -817,6 +852,10 @@
 		// }
 
 		.lot--selector{
+			.s-viewer-mode &{
+				display: none;
+			}
+
 			position: absolute;
 		    left: 6px;
 		    top: 50%;

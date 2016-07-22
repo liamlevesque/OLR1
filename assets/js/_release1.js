@@ -1,47 +1,101 @@
 $(function(){
 
-	$(document).on('mouseup','.js--max-bid-tooltip',function(e){
-		loadMaxBidTooltip($(e.currentTarget));
-	});
-
 	$('.js-tooltip-ooo').tooltipster({
 		content: $('<p>Sold Out Of Order</p>'),
 		theme: 'ritchie-tooltips_small',
 		delay: tooltipDelay,
-		position: 'bottom'
+		side: 'bottom'
 	});
 
 	$('.js--ppl-tooltip').tooltipster({
-		content: $($('.js--tooltip-ppl').html()),
+		content: $('.js--tooltip-ppl').detach(),
 		theme: 'ritchie-tooltips_small',
 		delay: tooltipDelay,
-		touchDevices: false,
-		position: 'bottom'
+		trigger: 'custom',
+	    triggerOpen: {
+	        mouseenter: true
+	    },
+	    triggerClose: {
+	        click: true,
+	        scroll: true,
+	        mouseleave: true
+	    },
+		side: 'bottom',
+
 	});
 
 	$('.js--audio-tooltip').tooltipster({
-		content: $($('.js--tooltip-audio').html()),
+		content: $('.js--tooltip-audio').detach(),
 		theme: 'ritchie-tooltips_small',
 		delay: tooltipDelay,
-		touchDevices: false,
-		position: 'bottom'
+		trigger: 'custom',
+	    triggerOpen: {
+	        mouseenter: true
+	    },
+	    triggerClose: {
+	        click: true,
+	        scroll: true,
+	        mouseleave: true
+	    },
+		side: 'bottom'
 	});
 
 	$('.js--photo-tooltip').tooltipster({
-		content: $($('.js--tooltip-photos').html()),
+		content: $('.js--tooltip-photos').detach(),
 		theme: 'ritchie-tooltips_small',
 		delay: tooltipDelay,
-		touchDevices: false,
-		position: 'bottom'
+		trigger: 'custom',
+	    triggerOpen: {
+	        mouseenter: true
+	    },
+	    triggerClose: {
+	        click: true,
+	        scroll: true,
+	        mouseleave: true
+	    },
+		side: 'bottom'
 	});
 
 	$('.js--cart-tooltip').tooltipster({
-		content: $($('.js--tooltip-cart').html()),
+		content: $('.js--tooltip-cart').detach(),
 		theme: 'ritchie-tooltips_small',
 		delay: tooltipDelay,
-		touchDevices: false,
-		position: 'bottom'
+		trigger: 'custom',
+	    triggerOpen: {
+	        mouseenter: true
+	    },
+	    triggerClose: {
+	        click: true,
+	        scroll: true,
+	        mouseleave: true
+	    },
+		side: 'bottom'
 	});
+
+	$('.js--total-max-bids-tooltip').tooltipster({
+		content: $('.js--tooltip-max-bid').detach(),
+		theme: 'ritchie-tooltips_error',
+		trigger: 'custom',
+		delay: tooltipDelay,
+		triggerOpen: {
+	        mouseenter: true,
+	        click: true
+	    },
+	    triggerClose: {
+	        click: true,
+	        scroll: true,
+	        mouseleave: true
+	    },
+	    functionBefore: function(instance,helper){
+			if(!$(helper.origin).hasClass('s-error'))return false;
+		},
+		side: 'bottom',
+
+	});
+
+	$('.js--viewer-toggle').click(function(){
+		$('body').toggleClass('s-viewer-mode');
+	})
 
 	$('.js--auctioneer-msg-button').click(function(){
 		user.message = auctioneerMessages[Math.floor(Math.random() * auctioneerMessages.length)];
@@ -52,6 +106,11 @@ $(function(){
 		if ($next.length) $next.attr('class','s-active'); 
 		else $(".js--logo svg:first").attr('class','s-active'); 
 
+	});
+
+	$('.js--toggleMultiAttend').click(function(){
+		$('.js--multi-attend').toggleClass('s-hidden');
+		$('.js--lot-table-area').toggleClass('s-multi-attend');
 	});
 
 	$('.js--goToOpenOffers').click(function(){
@@ -97,6 +156,15 @@ $(function(){
 		$('.js--finance-calc, .js--ccy-converter').removeClass('s-expanded');
 	});
 
+	//GET TODAY'S EXCHANGE RATES
+	$.ajax({
+		url: "http://api.fixer.io/latest?base="+ccyconversion2.auctionCCY,
+		success: function (ccydata) {
+			ccys = ccydata.rates;
+		}
+	})
+	
+
 	// window.onbeforeunload = function(){
  //    	location.assign('http://www.google.com');
  //    	return "Woah! You've won 6 lots.\n\nTo see a summary of your purchases, stay on this page and click on the shopping cart.";
@@ -116,66 +184,40 @@ var tooltipDelay = 500,
 			"Wednesday is hump day, but has anyone asked the camel if he's happy about it?"
 		],
 	bidMode = [ 'normal', 'open-offer', 'runner-up', 'winners-choice' ],
-	bidModeIndex = 0;
+	bidModeIndex = 0,
+	tooltipInstance;
 
 
-function loadMaxBidTooltip(target){
-	var parent = $(target).parents('.lot');
+function buildMaxBidTooltip(instance, helper){
+
+	var target = $(helper.origin),
+		parent = target.parents('.lot'),
+		targetLot = lotObject2.lotList[target.data('lot') - 1];
 	parent.addClass('s-selected');
-	
-	//FINANCE CALCULATOR CONTROLS
-	$(target).tooltipster({
-		content: $($('.js--max-bid-content').html()),
-		theme: 'ritchie-tooltips_full',
-		interactive: true,
-		trigger: "click",
-		position: 'top-right',
-		functionBefore: function(origin, continueTooltip){
-			continueTooltip();
-			
-			maxbidObject.lotNumber = parent.find('.col-0').text();
-			maxbidObject.lotName = parent.find('.col-2a').text();
-			maxbidObject.lotSerial = parent.find('.col-2b').text();
-			maxbidObject.lotMeter = parent.find('.col-2c').text();
 
-			maxbidObject.totalMaxBids = user.bid;
-			maxbidObject.hasMaxBid = (target.data('bid') > 0) ? true : false;
-			maxbidObject.initialBid = (target.data('bid') > 0) ? target.data('bid') : 0;
-			maxbidObject.maxbidAmount = (target.data('bid') > 0) ? target.data('bid') : '';
-			
-			financeModal = rivets.bind($('.js--max-bid-object'),{
-				maxbidObject: maxbidObject,
-				maxbidController : maxbidController
-			});
+	maxbidObject.lotNumber = targetLot.lot;
+	maxbidObject.lotName = targetLot.name;
+	maxbidObject.lotSerial = targetLot.serial;
+	maxbidObject.lotMeter = targetLot.meter;
+	maxbidObject.totalMaxBids = user.bid;
+	maxbidObject.showConfirmation = false;
+	maxbidObject.hasMaxBid = (targetLot.bid > 0) ? true : false;
+	maxbidObject.initialBid = (targetLot.bid > 0) ? targetLot.bid : 0;
+	maxbidObject.maxbidAmount = (targetLot.bid > 0) ? targetLot.bid : '';
 
-			$('.js--max-bid-field').val(maxbidObject.maxbidAmount).autoNumeric('init',{
-				aSep: ',', 
-				aDec: '.',
-				mDec: 0
-			});
-
-			// $('.js--max-bid-field').inputmask("numeric", {
-			//     radixPoint: ".",
-			//     groupSeparator: ",",
-			//     digits: 2,
-			//     autoGroup: true,
-			//     prefix: '', //Space after $, this will not truncate the first character.
-			//     rightAlign: false,
-			//     oncleared: function () { self.Value(''); }
-			// });
-
-			//console.log(maxbidObject.initialBid);
-
-			$('.js--max-bid-field').focus().removeClass('s-error');
-		},
-		functionAfter: function(origin){
-			unloadMaxBidTooltip(target);
-		}
+	financeModal = rivets.bind($(instance.elementTooltip()).find('.js--max-bid-object'),{
+		maxbidObject: maxbidObject,
+		maxbidController : maxbidController
 	});
-}
+	
+	$(instance.elementTooltip()).find('.js--max-bid-field').val(maxbidObject.maxbidAmount).autoNumeric('init',{
+		aSep: ',', 
+		aDec: '.',
+		mDec: 0
+	}).focus().removeClass('s-error');
 
-function unloadMaxBidTooltip(target){
-	$(target).parents('.lot').removeClass('s-selected');
+	tooltipInstance = instance;
+	
 }
 	
 	var maxbidObject = {
@@ -192,6 +234,7 @@ function unloadMaxBidTooltip(target){
 		"offIncrement" : false,
 		"offIncrement_high": 0,
 		"offIncrement_low": 0,
+		"showConfirmation":false,
 		"isValid": true
 	},
 	maxbidModal,
@@ -215,6 +258,16 @@ function unloadMaxBidTooltip(target){
 	    	maxbidController.createMaxBid();
 	    },
 
+	    onHideConfirm: function(e,model){
+	    	maxbidObject.showConfirmation = false;
+	    	$('.js--max-bid-field').focus().select();
+	    },
+
+	    showTutorial: function(e,model){
+	    	tutorialObject.active = true;
+	    	maxbidController.killtooltip();
+	    },
+
 	    clearWarningClick: function(e,model){
 			maxbidObject.maxbidAmount = '';
 			$('.js--max-bid-field').autoNumeric('set', 0).focus().select();
@@ -225,8 +278,7 @@ function unloadMaxBidTooltip(target){
 		},
 
 		onMaxBidChange: function(e,model){
-			console.log('test');
-
+			
 			$(e.currentTarget).removeClass('s-error');
 
 	    	maxbidObject.offIncrement = false; //HIDE INCREMENT WARNING WHEN YOU START TO TYPE AGAIN
@@ -270,39 +322,59 @@ function unloadMaxBidTooltip(target){
 	    	}
 
 	    	maxbidObject.offIncrement = false;
+	    	
+	    	//GIVE THE LOT OBJECT THE CORRECT MAX BID
+	    	lotObject2.lotList[($(tooltipInstance.elementOrigin()).data('lot')) - 1].bid = maxbidObject.maxbidAmount;
 
-	    	$('.js--max-bid-tooltip.tooltipstered').data('bid',maxbidObject.maxbidAmount).html("<span class='dollars'>"+formatprice(maxbidObject.maxbidAmount)+"</span>");
+	    	maxbidObject.showConfirmation = true;
+	    	
+	    	//HACK TO FORCE CHECKMARK GIF TO REPLAY
+	    	$('.js--success-checkmark').prop('src',function(){return this.src;});
+	    	
+	    	maxbidObject.hasMaxBid = true;
+
 	    	maxbidController.updateBids();
-	    	maxbidController.killtooltip();
+	    	//maxbidController.killtooltip();
 	    },
 
 	    updateBids: function(){
 	    	user.bid = 0;
-	    	var i = 0;
+	    	
+	    	//SUM UP ALL OF THE LOTS WITH MAX-BIDS ON THEM
+	    	user.bid = lotObject2.lotList.reduce(function(a,b){ return {bid: a.bid + b.bid}; }).bid;
 
-	    	$('.js--max-bid-tooltip').each(function(){
-	    		var tempbid = parseInt($(this).data('bid'));
-	    		if(tempbid > 0){
-	    			user.bid += tempbid; 
-	    			i++;
-	    		}
-	    	})
-
-	    	user.bidcount = i;
+	    	//COUNT THE NUMBER OF LOTS WITH MAX BIDS ON THEM
+	    	user.bidcount = lotObject2.lotList.filter(function(val){ return val.bid > 0; }).length;
 	    },
 
 	    cancelMaxBid: function(amt){
-	    	$('.js--max-bid-tooltip.tooltipstered').data('bid',0).text('');
+	    	lotObject2.lotList[$(tooltipInstance.elementOrigin()).data('lot')-1].bid = 0;
+	    	
 	    	maxbidController.updateBids();
 	    	maxbidController.killtooltip();
 	    },
 
 	    killtooltip: function(){
-	    	$('.js--max-bid-tooltip.tooltipstered').tooltipster('destroy');
-	    	unloadMaxBidTooltip();
+	    	$('.lot.s-selected').removeClass('s-selected');
+	    	tooltipInstance.close();
+	    	
 	    }
 
 	};
+
+rivets.binders.showhideanimate = function(el, value){
+	if(value){
+		//$(el).css({"display":"initial"});
+		$(el).addClass('s-visible');	
+	} 
+	else {
+		$(el).removeClass('s-visible');
+		// setTimeout(function(){
+		// 	$(el).css({"display":"none"});
+		// },1000);
+	}
+
+}
 
 rivets.formatters.validateBid = function(value,offIncrement,bids,credit){
 	if(parseInt(bids) > credit || offIncrement){
@@ -590,7 +662,7 @@ rivets.formatters.validateBid = function(value,offIncrement,bids,credit){
 
 var ccys = {
 		"CAD":"1",
-		"USD":"0.7",
+		"USD":"0.7731",
 		"EUR":"0.6",
 		"GBP":"0.5",
 		"CNY":"4.5",
@@ -611,21 +683,22 @@ var ccys = {
 		'rate' : 1,
 		'conversion' : bidObject.askPrice,
 		'price': bidObject.askPrice,
-		'editing': false
+		'editing': false,
+		'auctionCCY': 'CAD'
 	},
 	
 	ccycontroller2 = { 
 		
 		onCCYChange: function(e, model) {			
 			ccyconversion2.currentCCY = $(e.currentTarget).val();
-			ccycontroller2.update(ccyconversion2);
+			ccycontroller2.update();
 			ccyconversion2.active = true;
 			ccyconversion2.editing = false;
 	    },
 
 	    ccyChange: function(e,model){
 	    	ccyconversion2.currentCCY = $(e.currentTarget).data('ccy');
-			ccycontroller2.update(ccyconversion2);
+			ccycontroller2.update();
 			ccyconversion2.active = true;
 			ccyconversion2.editing = false;
 	    },
@@ -635,12 +708,13 @@ var ccys = {
 	    	ccyconversion2.editing = !ccyconversion2.editing;
 	    },
 	    
-	    update: function(data) {
-	    	data.rate = ccys[data.currentCCY];
-			data.conversion = data.rate * bidObject.askPrice;
+	    update: function() {
+	    	
+	    	ccyconversion2.rate = (ccyconversion2.currentCCY === ccyconversion2.auctionCCY) ? 1 : ccys[ccyconversion2.currentCCY];
+			ccyconversion2.conversion = ccyconversion2.rate * bidObject.askPrice;
 			
 			ccyconversion2.active = true;
-			finance2.ccy = data.currentCCY;
+			finance2.ccy = ccyconversion2.currentCCY;
 			finance2.payment = 0; //force refresh of the CCY in the finance calculator
 			finance2.payment = financingCalculation2();
 
@@ -756,9 +830,8 @@ rivets.formatters.convertedPrice2 = function(value){
 	var tempVal = parseFloat(value),
 		convertedVal = tempVal * ccyconversion2.rate;
 
-	console.log(tempVal);
-	if(ccyconversion2.active) return "<span class='"+ ccyconversion2.currentCCY +"'><span class='CCY'></span><span class='dollars'>" + formatprice(convertedVal.toFixed(2)) + "</span><span class='h-t-s'>per month</span></span>";
-	else return "<span class='CCY'></span><span class='dollars'>" + formatprice(tempVal.toFixed(2)) + "</span><span class='h-t-s'>per month</span>";
+	if(ccyconversion2.active) return "<span class='"+ ccyconversion2.currentCCY +"'><span class='dollars'>" + formatprice(convertedVal.toFixed(2)) + "</span><span class='CCY'></span><span class='h-t-s'>per month</span></span>";
+	else return "<span class='dollars'>" + formatprice(tempVal.toFixed(2)) + "</span><span class='CCY'></span><span class='h-t-s'>per month</span>";
 }
 
 rivets.bind($('.js-financing-object2'),{
@@ -806,12 +879,98 @@ function financingCalculation2(){
 
 
 
+/*********************************
+	LOT LIST
+********************************/
+
+var lotObject2 = {
+		lotList : [],
+		currentLot: null,
+		followCurrentLot: true
+	},
+
+	lotObjectController2 = {
+
+	};
+
+rivets.bind($('.js-lot-tables2'),{
+	lotObject2: lotObject2
+});
+
+$.ajax({
+	method: "GET",
+	url: "assets/js/data/lotdata.json",
+	dataType: "json", 
+	success: function(data){
+		buildLotTable( data );
+	},
+	error: function(jqXHR, textStatus){
+		console.log(jqXHR.responseText);
+		console.log("Request failed: " + textStatus);
+	}
+});
+
+
+function buildLotTable(data){
+	for(var i = 0; i < data[0].lots.length; i++) lotObject2.lotList.push(data[0].lots[i]);
+
+	lotObject2.currentLot = 4;
+
+	$('.js--max-bid-tooltip').tooltipster({
+		content: "Max Bid",
+		theme: 'ritchie-tooltips_small',
+		side: 'bottom',
+		multiple: true,
+		trigger: 'custom',
+	    triggerOpen: {
+	        mouseenter: true
+	    },
+	    triggerClose: {
+	        click: true,
+	        scroll: true,
+	        mouseleave: true
+	    }
+	});
+
+	$('.js--max-bid-tooltip').tooltipster({
+		content: $('.js--max-bid-content').detach(),
+		theme: 'ritchie-tooltips_full',
+		interactive: true,
+		multiple: true,
+		trigger: "click",
+		side: 'top',
+		contentCloning: true,
+		functionReady: function(instance,helper){
+			buildMaxBidTooltip(instance, helper);
+		},
+		functionAfter: function (instance,helper){
+			$('.lot.s-selected').removeClass('s-selected');
+		}
+		
+	});
+}
 
 
 
+/*************************
+	MAX BID TUTORIAL
+*************************/
 
+var tutorialObject = {
+		active: false,
+		step: 0,
+	},
 
+	tutorialController = {
+		onCloseClick: function(e, model){
+			tutorialObject.active = false;
+		}
+	};
 
+rivets.bind($('.js--tutorial-object'),{
+	tutorialObject: tutorialObject,
+	tutorialController: tutorialController
+});
 
 
 

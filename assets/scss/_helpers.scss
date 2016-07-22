@@ -25,6 +25,10 @@
 		text-align: center;
 	}
 
+	.h-ta-left{
+		text-align: left;
+	}
+
 	.h-ta-right{
 		text-align: right;
 	}
@@ -60,6 +64,14 @@
 	.h-mr-50{
 		margin-right: $default-margin/2;
 	}
+
+	.h-ml-100{
+		margin-left: $default-margin;
+	}
+
+	.h-ml-50{
+		margin-left: $default-margin/2;
+	} 
 
 	.h-pt-100{
 		padding-top: $default-margin;
@@ -140,6 +152,24 @@
 	    font-size: 25px;
 	}
 
+
+
+
+	.h-viewer-hidden{
+		.s-viewer-mode &{
+			display: none;
+		}
+	}
+
+	.h-viewer-shown{
+		display: none;
+
+		.s-viewer-mode &{
+			display: initial;
+		}
+	}
+
+
 /*******************
 	COLOUR OVERRIDES
 ********************/
@@ -154,7 +184,7 @@
 
 .c-grey{color: $grey-500;}
 .c-grey-700{color: $grey-700};
-.c-white{color: $white;}
+.c-white{color: $white !important;}
 .c-black{color: $black;}
 
 .bg-finance{background-color: $finance-tint;}

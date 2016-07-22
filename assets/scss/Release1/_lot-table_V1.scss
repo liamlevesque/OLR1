@@ -8,12 +8,30 @@ $ring-left-spacing: 50px;
 $ring-right-spacing: 30px;
 
 .client--bottom{
-	position: relative;
-	overflow: hidden;
+	position: absolute;
+    overflow: hidden;
+    bottom: 30px;
+    top: $top-section-height-small + $header-height;
+    width: 100%;
+
+    &.s-multi-attend{
+		bottom: 128px;
+	}
+
+	@include vbreakpoint(med){
+		top: $top-section-height-med + $header-height;
+	}
+
+	@include vbreakpoint(large){
+		top: $top-section-height-large + $header-height;
+	}
 }
+
+
 
 .bottom-bg{
 	@include center-content;
+	height: 100%;
 }
 
 .lot-tables{
@@ -21,6 +39,8 @@ $ring-right-spacing: 30px;
 	@include default-font;
 	//box-shadow: $ritchie-shadow;
 	border-top: 1px solid $border-separator;
+	position: relative;
+	height: 100%;
 	
 
 	@include breakpoint(large){
@@ -31,8 +51,11 @@ $ring-right-spacing: 30px;
 	.lot-tables--header{
 		background-color: $grey-100;
 		padding: 0;
-		position: relative;
 		padding: 10px 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
 			
 		&:after{
 			content: '';
@@ -60,6 +83,14 @@ $ring-right-spacing: 30px;
 				padding-right: $default-margin;
 				text-align: center;
 			}
+		}
+
+		.lot-scroll{
+			overflow-y: scroll;
+			position: absolute;
+			top: 33px;
+			bottom: 0;
+
 		}
 		
 		.lot-table{
@@ -106,6 +137,17 @@ $ring-right-spacing: 30px;
 				text-align: center;
 			}
 
+			.s-viewer-mode{
+				.col-5{
+					width: 0;
+					display: none;
+				}
+
+				.col-5b{
+					width: 20%;
+				}
+			}
+
 			.lot{
 				display: table-row;
 				font-size: 0.85rem;
@@ -140,6 +182,10 @@ $ring-right-spacing: 30px;
 					}
 				}
 
+				.col-5 i{
+					//font-size: 1.5rem;
+				}
+
 				.col-5b{
 					padding: 0;
 					line-height: 1;
@@ -159,7 +205,7 @@ $ring-right-spacing: 30px;
 						pointer-events: none;
 					}
 
-					.icon-plus, button, .lot--add-bid:before{
+					i, button, .lot--add-bid:before{
 						display: none;
 					}
 
@@ -181,7 +227,7 @@ $ring-right-spacing: 30px;
 						opacity: 0.5;
 					}
 
-					.icon-plus, button, .lot--add-bid:before{
+					i, button, .lot--add-bid:before{
 						display: none;
 					}
 
@@ -196,7 +242,7 @@ $ring-right-spacing: 30px;
 				}
 
 
-				&.s-currentLot{
+				&.s-currentLot, &.s-currentlot{
 					background-color: rgba($money-color,0.1);
 	
 					.col-0{
@@ -249,7 +295,7 @@ $ring-right-spacing: 30px;
 						color: $money-color;
 					}
 
-					.icon-plus, button, .lot--add-bid:before{
+					i, button, .lot--add-bid:before{
 						display: none;
 					}
 
@@ -321,6 +367,8 @@ $ring-right-spacing: 30px;
 					}
 				}
 
+
+
 			}
 				.lot--photo-icon{
 					width: 18px;
@@ -367,6 +415,12 @@ $ring-right-spacing: 30px;
 					&:hover{
 						color: $money-color;
 					}
+
+					.s-viewer-mode &{
+						display: none !important;
+					}
+
+					
 				}
 
 				.lot--watching{
